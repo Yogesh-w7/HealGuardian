@@ -95,3 +95,37 @@ tzdata==2025.2; python_version >= '2'
 urllib3==2.5.0; python_version >= '3.9'
 yarl==1.20.1; python_version >= '3.9'
 zstandard==0.23.0; python_version >= '3.8'
+streamlit==1.46.1
+streamlit-folium==0.12.0
+folium==0.17.1
+requests==2.32.4
+python-dotenv==1.1.1
+
+# LangChain & RAG
+langchain==0.3.26
+langchain-core==0.3.68
+langchain-community==0.3.27
+langchain-huggingface==0.3.0
+langchain-groq==0.3.5
+huggingface-hub==0.33.2
+sentence-transformers==5.0.0
+
+# Vector Database
+faiss-cpu==1.11.0
+
+# LLM / Model Utilities
+transformers==4.53.1
+torch==2.7.1
+safetensors==0.5.3
+
+# Data & Parsing
+pandas==2.3.1
+numpy==2.3.1
+orjson==3.10.18
+pyyaml==6.0.2
+
+# Optional (if you need advanced features)
+tenacity==9.1.2
+dataclasses-json==0.6.7
+requests-toolbelt==1.0.0
+
