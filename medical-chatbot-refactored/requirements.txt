@@ -99,9 +99,11 @@ yarl==1.20.1; python_version >= '3.9'
 zstandard==0.23.0; python_version >= '3.8'
 # Core Web & Streamlit
 
-streamlit==1.46.1
-folium==0.17.1
+
+folium==0.20.0
 streamlit-folium==0.12.0
+zstandard==0.23.0
+
 requests==2.32.4
 python-dotenv==1.1.1
 
@@ -132,6 +134,7 @@ pyyaml==6.0.2
 tenacity==9.1.2
 dataclasses-json==0.6.7
 requests-toolbelt==1.0.0
+
 
 
 
