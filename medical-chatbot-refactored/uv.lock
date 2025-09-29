@@ -7,6 +7,7 @@ resolution-markers = [
     "python_full_version < '3.12'",
 ]
 
+
 [[package]]
 name = "aiohappyeyeballs"
 version = "2.6.1"
@@ -14,6 +15,22 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/26/30/f84a107a9c4331c14b2b586036f40965c128aa4fee4dda5d3d51cb14ad54/aiohappyeyeballs-2.6.1.tar.gz", hash = "sha256:c3f9d0113123803ccadfdf3f0faa505bc78e6a72d1cc4806cbd719826e943558", size = 22760, upload_time = "2025-03-12T01:42:48.764Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/0f/15/5bf3b99495fb160b63f95972b81750f18f7f4e02ad051373b669d17d44f2/aiohappyeyeballs-2.6.1-py3-none-any.whl", hash = "sha256:f349ba8f4b75cb25c99c5c2d84e997e485204d2902a9597802b0371f09331fb8", size = 15265, upload_time = "2025-03-12T01:42:47.083Z" },
+]
+[[package]]
+name = "folium"
+version = "0.17.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/ce/b2/6f154b52027c2d9622d0e6356a1a5e6f47fef4c8e9df4762c1473af02ec1/folium-0.17.0.tar.gz", hash = "sha256:1ebacb421adc21a1fa799f5abf62e9cd4cfe2f3ebcf95fbc9d51c1c4e937568d", size = 98658, upload_time = "2024-11-15T10:30:00.000Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/0a/aa/7d9cf878ba422a93ebd7cc84c3353d9dbbf49f4bbf72055df3340b768f09/folium-0.17.0-py3-none-any.whl", hash = "sha256:b3dc8e9497b90217a3bbde07b87a9de34f8bb3224421a2053e8de628b758f1ad", size = 120481, upload_time = "2024-11-15T10:29:59.000Z" },
+]
+[[package]]
+name = "streamlit-folium"
+version = "0.20.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/bf/9f/0b94a3b7f69b85d3cc7aaea9a0618c58e0d29ab729aa09732f22b05f17d6/streamlit_folium-0.20.0.tar.gz", hash = "sha256:3b98d4a92c12374a2eb51c03cf7c3a82a1b8507c6df5ed8cf019ad85e4a6b735", size = 24385, upload_time = "2024-10-22T07:12:44.000Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/f2/d9/25b4e1a8a4c77c159b1d6d03d1731f5f55ec2f9f86e588dfc15d87ad1db5/streamlit_folium-0.20.0-py3-none-any.whl", hash = "sha256:1c298f38da9f7ad87782af49708c6ac39b4f1841e844f2a7af0bfb00c87ff6ef", size = 18465, upload_time = "2024-10-22T07:12:43.000Z" },
 ]
 
 [[package]]
@@ -2695,3 +2712,4 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/b0/4c/315ca5c32da7e2dc3455f3b2caee5c8c2246074a61aac6ec3378a97b7136/zstandard-0.23.0-cp313-cp313-win32.whl", hash = "sha256:a9b07268d0c3ca5c170a385a0ab9fb7fdd9f5fd866be004c4ea39e44edce47dd", size = 430862, upload_time = "2024-07-15T00:16:51.003Z" },
     { url = "https://files.pythonhosted.org/packages/a2/bf/c6aaba098e2d04781e8f4f7c0ba3c7aa73d00e4c436bcc0cf059a66691d1/zstandard-0.23.0-cp313-cp313-win_amd64.whl", hash = "sha256:f3513916e8c645d0610815c257cbfd3242adfd5c4cfa78be514e5a3ebb42a41b", size = 495578, upload_time = "2024-07-15T00:16:53.135Z" },
 ]
+
