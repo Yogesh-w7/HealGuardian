@@ -130,5 +130,8 @@ tenacity==9.1.2
 dataclasses-json==0.6.7
 requests-toolbelt==1.0.0
 
+streamlit
 folium>=0.14.0
 streamlit-folium>=0.12.0
+
+
