@@ -15,27 +15,49 @@ from langchain.chains.combine_documents import create_stuff_documents_chain
 from dotenv import load_dotenv
 load_dotenv()
 
-DB_FAISS_PATH = os.environ.get("DB_FAISS_PATH", "vectorstore/db_faiss")
-
+# Note for production deployment:
+# Create a requirements.txt file in your GitHub repo root with the following content:
+# streamlit
+# requests
+# folium
+# streamlit-folium
+# langchain
+# langchain-community
+# langchain-core
+# langchain-huggingface
+# langchain-groq
+# python-dotenv
+# faiss-cpu
+# sentence-transformers
+# torch
+# transformers
+# groq
+# After adding requirements.txt, reboot the app in Streamlit Cloud.
+# This ensures all modules, including 'faiss', are installed.
 
 # ------------------ Vectorstore ------------------
 @st.cache_resource
 def get_vectorstore():
-    embedding_model = HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2')
-    index_file = os.path.join(DB_FAISS_PATH, "index.faiss")
-
-    # If FAISS index missing, create a dummy one
-    if not os.path.exists(index_file):
-        st.info("FAISS index not found. Building a new one...")
-        os.makedirs(DB_FAISS_PATH, exist_ok=True)
-        # Replace with your actual documents
-        documents = ["Document 1 text", "Document 2 text"]
-        db = FAISS.from_texts(documents, embedding_model)
-        db.save_local(DB_FAISS_PATH)
-    else:
-        db = FAISS.load_local(DB_FAISS_PATH, embedding_model, allow_dangerous_deserialization=True)
-
-    return db
+    try:
+        embedding_model = HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2')
+        
+        # For production, build in memory to avoid file system issues
+        # Replace with your actual documents loading logic
+        # Example: Use real documents instead of placeholders
+        documents = ["Document 1 text", "Document 2 text"]  # TODO: Load real documents here
+        
+        if not documents:
+            raise ValueError("No documents available to build vectorstore.")
+        
+        with st.spinner("Building vectorstore in memory..."):
+            db = FAISS.from_texts(documents, embedding_model)
+        
+        st.success("Vectorstore built successfully.")
+        return db
+    except Exception as e:
+        st.error(f"Error building vectorstore: {str(e)}")
+        # In production, log the error
+        return None
 
 
 # ------------------ Prompts ------------------
@@ -52,8 +74,8 @@ def get_lat_lon(city):
         data = response.json()
         if data:
             return float(data[0]['lat']), float(data[0]['lon'])
-    except Exception:
-        pass
+    except Exception as e:
+        st.error(f"Error fetching location: {str(e)}")
     return None, None
 
 
@@ -84,7 +106,8 @@ def get_hospitals(lat, lon, radius=10000):
                     facility['details'] = get_hospital_details(name)
                     facilities.append(facility)
         return facilities
-    except Exception:
+    except Exception as e:
+        st.error(f"Error fetching hospitals: {str(e)}")
         return []
 
 
@@ -216,9 +239,12 @@ def main():
             try:
                 vectorstore = get_vectorstore()
                 if vectorstore is None:
-                    st.error("Failed to load vectorstore")
+                    raise ValueError("Failed to build vectorstore in production environment. Check if all dependencies are installed via requirements.txt.")
 
                 GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
+                if not GROQ_API_KEY:
+                    raise ValueError("GROQ_API_KEY not found in environment variables. Set it in .env or Streamlit secrets.")
+
                 llm = ChatGroq(
                     model="llama-3.1-8b-instant",
                     temperature=0.5,
@@ -235,7 +261,8 @@ def main():
                 st.chat_message('assistant').markdown(result)
                 st.session_state.messages.append({'role': 'assistant', 'content': result})
             except Exception as e:
-                st.error(f"Error: {str(e)}")
+                st.error(f"Production Error: {str(e)}")
+                st.session_state.messages.append({'role': 'assistant', 'content': f"Error: {str(e)}"})
 
 
 if __name__ == "__main__":
